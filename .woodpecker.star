@@ -544,6 +544,26 @@ def main(ctx):
     pipelineSanityChecks(pipelines)
     return pipelines
 
+# def handleFork(ctx):
+#     return [{
+#         "name": "handle-fork",
+#         "steps": [
+#             {
+#                 "name": "handle-fork",
+#                 "image": "alpine/git",
+#                 "commands": [
+#                     "git remote add fork https://github.com/$CI_COMMIT_SOURCE_BRANCH.git",
+#                     "git fetch fork",
+#                     "git checkout $CI_COMMIT_SHA",
+#                 ],
+#             },
+#         ],
+#         "when": [
+#             event["base"],
+#             event["pull_request"]
+#         ],
+#     }]
+
 def cachePipeline(ctx, name, steps):
     return {
         "name": "build-%s-cache" % name,
